@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Header() {
-  const { data: session } = useSession();
-  console.log(session, 'nav');
+  const { data: session, status  } = useSession();
+  console.log(status, 'nav');
   return (
     <div className="max-w-full mx-auto p-6 bg-gray-600 flex items-center justify-between">
       <h1 className="text-3xl font-bold text-gray-100">AJ.</h1>

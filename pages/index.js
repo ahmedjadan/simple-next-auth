@@ -1,11 +1,15 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Header from '../components/Header';
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  if (status === 'loading') {
+    return <div>Loading</div>;
+  }
   return (
     <div>
       <Header />
@@ -21,6 +25,10 @@ export default function Home() {
             <p>log in to continue</p>
           </div>
         )}
+
+        <Link href="/dashboard">
+          <a>Dashboard</a>
+        </Link>
       </div>
     </div>
   );
